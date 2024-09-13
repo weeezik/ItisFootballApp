@@ -1,26 +1,37 @@
 import React, {useEffect, useState} from 'react';
 import { View, Text, StyleSheet, ActivityIndicator, FlatList } from 'react-native';
+import axios from 'axios';
 
 interface Game {
   id: string;
   homeTeam: string;
   awayTeam: string;
-  time: string;
+  utcDate: string;
 }
 
 export default function TabTwoScreen() {
   const [games, setGames] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   
+  const API_KEY = 'f34d766754ca4538a9219fe8caf15124'
+
   useEffect(() => {
-    setTimeout(() => {
-      setGames([
-        { id: '1', homeTeam: 'Team A', awayTeam: 'Team B', time: '12:00 PM' },
-        { id: '2', homeTeam: 'Team C', awayTeam: 'Team D', time: '3:00 PM' },
-        { id: '3', homeTeam: 'Team E', awayTeam: 'Team F', time: '6:00 PM' },
-      ]);
-      setLoading(false);
-    }, 1000);
+    const fetchGames = async () => {
+      try {
+        const response = await axios.get('https://api.football-data.org/v4/matches', {
+          headers: { 'X-Auth-Token': API_KEY },
+        });
+        setGames(response.data.matches);
+      } catch (err) {
+        console.error(err);
+        setError('Failed to fetch data.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchGames();
   }, []);
 
   if (loading) {
@@ -31,24 +42,28 @@ export default function TabTwoScreen() {
       </View>
     );
   }
-  
+
+  if (error) {
+    return <Text>{error}</Text>;
+  }
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Upcoming Games</Text>
       <FlatList
         data={games}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
           <View style={styles.gameContainer}>
             <Text style={styles.gameText}>
-              {item.homeTeam} vs {item.awayTeam} - {item.time}
+              {item.homeTeam.name} vs {item.awayTeam.name} - {new Date(item.utcDate).toLocaleString()}
             </Text>
           </View>
         )}
       />
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
