@@ -1,21 +1,35 @@
 import React from 'react';
-import { StyleSheet, Button, Dimensions } from 'react-native';
+import { StyleSheet } from 'react-native';
+import {Text, Card, Button} from 'react-native-paper';
 import { Link } from 'expo-router';
-
-import { Text, View } from '@/components/Themed';
-
-const { width, height } = Dimensions.get('window'); // Get screen dimensions
+import { View } from '@/components/Themed';
 
 export default function TabOneScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>It's Football?</Text>
-      <Text>A soccer schedule built for US fans.</Text>
-      <Link href="/(tabs)/two" asChild>
-        <Button title="View Games"/>
-      </Link>
+    <Card style={styles.card}>
+      <Card.Content>
+        <Text variant="headlineLarge" style={styles.title}>
+          It's Football?
+        </Text>
+        <Text variant="bodyMedium" style={styles.subtitle}>
+          A soccer schedule built for US fans.
+        </Text>
+      </Card.Content>
+    </Card>
 
-    </View>
+    <Link href="/(tabs)/two" asChild>
+      <Button
+        mode="contained"
+        style={styles.button}
+        buttonColor="#1e90ff"
+        contentStyle={styles.buttonContent}
+      >
+        View Games
+      </Button>
+    </Link>
+    
+  </View>
   );
 }
 
@@ -24,40 +38,31 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f5f5f5', // Light background
+    backgroundColor: '#f5f5f5',
     padding: 20,
   },
-  textContainer: {
-    flex: 1, // Allow this container to grow and fill available space
-    justifyContent: 'center', // Center content vertically
-    alignItems: 'center', // Center content horizontally
+  card: {
+    width: '90%',
+    marginBottom: 20,
+    borderRadius: 10,
+    backgroundColor: '#ffffff',
+    elevation: 4, // Shadow for Android
   },
   title: {
-    fontSize: width * 0.1, // Responsive font size based on screen width
-    fontWeight: 'bold',
-    color: '#1e90ff', // DodgerBlue
-    textAlign: 'center', // Center text
+    textAlign: 'center',
+    marginBottom: 10,
+    color: '#1e90ff',
   },
   subtitle: {
-    fontSize: width * 0.05, // Responsive font size based on screen width
-    marginVertical: 10,
+    textAlign: 'center',
     color: '#333',
-    textAlign: 'center', // Center text
   },
   button: {
-    alignItems: 'center',
-    justifyContent: 'center',
     marginTop: 20,
-    paddingVertical: 12,
-    paddingHorizontal: 24,
-    elevation: 3,
-    backgroundColor: '#1e90ff', // Button background color
-    borderRadius: 5,
-    
+    borderRadius: 25,
   },
-  buttonText: {
-    color: '#fff',
-    fontSize: 16,
-    fontWeight: 'bold',
+  buttonContent: {
+    paddingVertical: 8,
+    paddingHorizontal: 20,
   },
 });

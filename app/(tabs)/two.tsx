@@ -1,7 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import { View, Text, StyleSheet, ActivityIndicator, FlatList } from 'react-native';
+import { StyleSheet, FlatList } from 'react-native';
+import { ActivityIndicator, Text } from 'react-native-paper';
+import { View } from '@/components/Themed';
 import axios from 'axios';
 import {formatInTimeZone} from 'date-fns-tz';
+
 
 interface Game {
   id: string;
@@ -37,8 +40,8 @@ export default function TabTwoScreen() {
   
   if (loading) {
     return (
-      <View style={styles.container}>
-        <ActivityIndicator size="large" color="#0000ff" />
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large"/>
         <Text>Loading games...</Text>
       </View>
     );
@@ -47,8 +50,6 @@ export default function TabTwoScreen() {
   if (error) {
     return <Text>{error}</Text>;
   }
-
-  // const matchDate = new Date(item.utcDate).toLocaleString();
 
   return (
     <View style={styles.container}>
@@ -90,4 +91,10 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: '#333',
   },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
+
