@@ -1,9 +1,10 @@
 import React from 'react';
-import { StyleSheet, Button } from 'react-native';
+import { StyleSheet, Button, Dimensions } from 'react-native';
 import { Link } from 'expo-router';
 
-import EditScreenInfo from '@/components/EditScreenInfo';
 import { Text, View } from '@/components/Themed';
+
+const { width, height } = Dimensions.get('window'); // Get screen dimensions
 
 export default function TabOneScreen() {
   return (
@@ -26,20 +27,34 @@ const styles = StyleSheet.create({
     backgroundColor: '#f5f5f5', // Light background
     padding: 20,
   },
+  textContainer: {
+    flex: 1, // Allow this container to grow and fill available space
+    justifyContent: 'center', // Center content vertically
+    alignItems: 'center', // Center content horizontally
+  },
   title: {
-    fontSize: 28,
+    fontSize: width * 0.1, // Responsive font size based on screen width
     fontWeight: 'bold',
     color: '#1e90ff', // DodgerBlue
+    textAlign: 'center', // Center text
   },
   subtitle: {
-    fontSize: 18,
+    fontSize: width * 0.05, // Responsive font size based on screen width
     marginVertical: 10,
     color: '#333',
+    textAlign: 'center', // Center text
+  },
+  button: {
+    marginTop: 20,
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    backgroundColor: '#1e90ff', // Button background color
+    borderRadius: 5,
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });
-
- <View style={styles.container}>
-      <Text style={styles.title}>Tab One</Text>
-      <View lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="app/(tabs)/index.tsx" />
-    </View>

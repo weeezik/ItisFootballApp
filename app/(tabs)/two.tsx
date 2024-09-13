@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import { View, Text, StyleSheet, ActivityIndicator, FlatList } from 'react-native';
-import { format, toZonedTime } from 'date-fns-tz';
 import axios from 'axios';
 
 interface Game {
