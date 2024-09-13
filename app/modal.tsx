@@ -1,7 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { Platform, StyleSheet } from 'react-native';
 
-import EditScreenInfo from '@/components/EditScreenInfo';
 import { Text, View } from '@/components/Themed';
 
 export default function ModalScreen() {
@@ -9,7 +8,12 @@ export default function ModalScreen() {
     <View style={styles.container}>
       <Text style={styles.title}>Info</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <Text style={styles.p}>It's Football? is designed specifically for soccer enthusiasts in the United States who crave a seamless way to stay updated with European soccer matches. Our app brings you the latest fixtures, scores, and game details in your local time, making it easier than ever to follow your favorite teams and leagues.</Text>
+      <Text style={styles.p}>It's Football? is designed specifically for 
+        soccer enthusiasts in the United States who crave a seamless 
+        way to stay updated with European soccer matches. Our app 
+        brings you the latest fixtures, scores, and game details in your 
+        local time, making it easier than ever to follow your favorite 
+        teams and leagues.</Text>
 
       {/* Use a light status bar on iOS to account for the black space above the modal */}
       <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />

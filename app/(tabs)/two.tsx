@@ -56,7 +56,7 @@ export default function TabTwoScreen() {
         renderItem={({ item }) => (
           <View style={styles.gameContainer}>
             <Text style={styles.gameText}>
-              {item.homeTeam.name} vs {item.awayTeam.name} - {new Date(item.utcDate).toLocaleString()}
+              {item.homeTeam.shortName} vs {item.awayTeam.shortName} - {new Date(item.utcDate).toLocaleString()}
             </Text>
           </View>
         )}

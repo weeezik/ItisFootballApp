@@ -45,12 +45,15 @@ const styles = StyleSheet.create({
     textAlign: 'center', // Center text
   },
   button: {
+    alignItems: 'center',
+    justifyContent: 'center',
     marginTop: 20,
     paddingVertical: 12,
     paddingHorizontal: 24,
+    elevation: 3,
     backgroundColor: '#1e90ff', // Button background color
     borderRadius: 5,
-    alignItems: 'center',
+    
   },
   buttonText: {
     color: '#fff',
