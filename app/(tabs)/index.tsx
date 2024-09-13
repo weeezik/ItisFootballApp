@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Button } from 'react-native';
+import { Link } from 'expo-router';
 
 import EditScreenInfo from '@/components/EditScreenInfo';
 import { Text, View } from '@/components/Themed';
@@ -9,10 +10,10 @@ export default function TabOneScreen() {
     <View style={styles.container}>
       <Text style={styles.title}>It's Football?</Text>
       <Text>A soccer schedule built for US fans.</Text>
-      <Button
-        title="View Games"
-        onPress={() => navigation.navigate('GameList')}
-      />
+      <Link href="/(tabs)/two" asChild>
+        <Button title="View Games"/>
+      </Link>
+
     </View>
   );
 }
@@ -20,22 +21,25 @@ export default function TabOneScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#f5f5f5', // Light background
+    padding: 20,
   },
   title: {
-    fontSize: 20,
+    fontSize: 28,
     fontWeight: 'bold',
+    color: '#1e90ff', // DodgerBlue
   },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
+  subtitle: {
+    fontSize: 18,
+    marginVertical: 10,
+    color: '#333',
   },
 });
 
-<View style={styles.container}>
-      <Text style={styles.title}>Tab One</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="app/(tabs)/index.tsx" />
-    </View>
+//  <View style={styles.container}>
+//       <Text style={styles.title}>Tab One</Text>
+//       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+//       <EditScreenInfo path="app/(tabs)/index.tsx" />
+//     </View>

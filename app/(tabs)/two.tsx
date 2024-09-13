@@ -1,14 +1,51 @@
-import { StyleSheet } from 'react-native';
+import React, {useEffect, useState} from 'react';
+import { View, Text, StyleSheet, ActivityIndicator, FlatList } from 'react-native';
 
-import EditScreenInfo from '@/components/EditScreenInfo';
-import { Text, View } from '@/components/Themed';
+interface Game {
+  id: string;
+  homeTeam: string;
+  awayTeam: string;
+  time: string;
+}
 
 export default function TabTwoScreen() {
+  const [games, setGames] = useState([]);
+  const [loading, setLoading] = useState(true);
+  
+  useEffect(() => {
+    setTimeout(() => {
+      setGames([
+        { id: '1', homeTeam: 'Team A', awayTeam: 'Team B', time: '12:00 PM' },
+        { id: '2', homeTeam: 'Team C', awayTeam: 'Team D', time: '3:00 PM' },
+        { id: '3', homeTeam: 'Team E', awayTeam: 'Team F', time: '6:00 PM' },
+      ]);
+      setLoading(false);
+    }, 1000);
+  }, []);
+
+  if (loading) {
+    return (
+      <View style={styles.container}>
+        <ActivityIndicator size="large" color="#0000ff" />
+        <Text>Loading games...</Text>
+      </View>
+    );
+  }
+  
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tab Two</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="app/(tabs)/two.tsx" />
+      <Text style={styles.title}>Upcoming Games</Text>
+      <FlatList
+        data={games}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => (
+          <View style={styles.gameContainer}>
+            <Text style={styles.gameText}>
+              {item.homeTeam} vs {item.awayTeam} - {item.time}
+            </Text>
+          </View>
+        )}
+      />
     </View>
   );
 }
@@ -16,16 +53,23 @@ export default function TabTwoScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    padding: 20,
+    backgroundColor: '#fff',
   },
   title: {
-    fontSize: 20,
+    fontSize: 24,
     fontWeight: 'bold',
+    color: '#1e90ff',
+    marginBottom: 20,
   },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
+  gameContainer: {
+    backgroundColor: '#f0f8ff', // Light blue background
+    padding: 15,
+    borderRadius: 8,
+    marginVertical: 10,
+  },
+  gameText: {
+    fontSize: 18,
+    color: '#333',
   },
 });
