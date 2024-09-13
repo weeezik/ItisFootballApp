@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { View, Text, StyleSheet, ActivityIndicator, FlatList } from 'react-native';
 import axios from 'axios';
+import {formatInTimeZone} from 'date-fns-tz';
 
 interface Game {
   id: string;
@@ -47,6 +48,8 @@ export default function TabTwoScreen() {
     return <Text>{error}</Text>;
   }
 
+  // const matchDate = new Date(item.utcDate).toLocaleString();
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Upcoming Games</Text>
@@ -56,7 +59,7 @@ export default function TabTwoScreen() {
         renderItem={({ item }) => (
           <View style={styles.gameContainer}>
             <Text style={styles.gameText}>
-              {item.homeTeam.shortName} vs {item.awayTeam.shortName} - {new Date(item.utcDate).toLocaleString()}
+              {item.homeTeam.shortName} vs {item.awayTeam.shortName} - {formatInTimeZone((new Date(item.utcDate)), 'America/Los_Angeles', 'HH:mm zzz')}
             </Text>
           </View>
         )}
