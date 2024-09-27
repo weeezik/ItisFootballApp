@@ -15,4 +15,6 @@ Mobile app for soccer fans living in the United States that want to know when to
 - cross-platform (so React Native) [ended up using Expo built on React Native]
 - API used: football-data.org
 
+This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+
 
