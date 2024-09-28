@@ -1,8 +1,8 @@
 # It's Football? Built on Expo
 Mobile app for soccer fans living in the United States that want to know when to watch European soccer.
-<div>
-<img src="app-photos/Simulator Screenshot - iPhone 15 - 2024-09-28 at 10.24.10.png" width=200>
-<img src="app-photos/Simulator Screenshot - iPhone 15 - 2024-09-28 at 10.24.12.png" width=200>
+<div style="flex: 1; justify-contents: space-around">
+<img src="app-photos/Loading.gif" width=200>
+<img src="app-photos/ViewGames.gif" width=200>
 <img src="app-photos/UpcomingGames.gif" width=200>
 </div>
 
