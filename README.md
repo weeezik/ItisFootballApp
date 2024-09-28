@@ -1,9 +1,9 @@
 # It's Football? Built on Expo
 Mobile app for soccer fans living in the United States that want to know when to watch European soccer.
 <div>
-<img src="app-photos/Loading.gif" width=300 style="margin: 10px">
-<img src="app-photos/ViewGames.gif" width=300 style="margin: 10px">
-<img src="app-photos/UpcomingGames.gif" width=300 style="margin: 10px">
+<img src="app-photos/Loading.gif" width=200 style="margin: 10px">
+<img src="app-photos/ViewGames.gif" width=200 style="margin: 10px">
+<img src="app-photos/UpcomingGames.gif" width=200 style="margin: 10px">
 </div>
 
 ### Problem
