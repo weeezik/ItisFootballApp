@@ -18,7 +18,7 @@ export default function TabTwoScreen() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   
-  const API_KEY = 'f34d766754ca4538a9219fe8caf15124'
+  const API_KEY = process.env.SOCCER_API_KEY
 
   useEffect(() => {
     const fetchGames = async () => {
