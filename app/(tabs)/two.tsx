@@ -18,13 +18,14 @@ export default function TabTwoScreen() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   
-  const API_KEY = process.env.SOCCER_API_KEY
+  const SOCCER_API_URL = process.env.EXPO_PUBLIC_API_URL;
+  const SOCCER_API_KEY = process.env.EXPO_PUBLIC_API_KEY;
 
   useEffect(() => {
     const fetchGames = async () => {
       try {
-        const response = await axios.get('https://api.football-data.org/v4/matches', {
-          headers: { 'X-Auth-Token': API_KEY },
+        const response = await axios.get(`${SOCCER_API_URL}`, {
+          headers: { 'X-Auth-Token': SOCCER_API_KEY },
         });
         setGames(response.data.matches);
       } catch (err) {
