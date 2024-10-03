@@ -1,10 +1,20 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { StyleSheet } from 'react-native';
 import {Text, Card, Button} from 'react-native-paper';
 import { Link } from 'expo-router';
 import { View } from '@/components/Themed';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Picker } from '@react-native-picker/picker';
 
 export default function TabOneScreen() {
+  const [selectedTimezone, setSelectedTimezone] = useState<string | null>(null);
+
+  // Save the user's timezone selection locally
+  const handleTimezoneChange = async (timezone: string) => {
+    setSelectedTimezone(timezone);
+    await AsyncStorage.setItem('userTimezone', timezone); // Save to local storage
+  };
+
   return (
     <View style={styles.container}>
     <Card style={styles.card}>
@@ -17,6 +27,20 @@ export default function TabOneScreen() {
         </Text>
       </Card.Content>
     </Card>
+
+    {/* Timezone Picker */}
+    <Text style={styles.subtitle}>Select Your Time Zone:</Text>
+      <Picker
+        selectedValue={selectedTimezone}
+        onValueChange={(itemValue) => handleTimezoneChange(itemValue)}
+        style={styles.picker}
+      >
+        <Picker.Item label="Pacific Time (PT)" value="America/Los_Angeles" />
+        <Picker.Item label="Mountain Time (MT)" value="America/Denver" />
+        <Picker.Item label="Central Time (CT)" value="America/Chicago" />
+        <Picker.Item label="Eastern Time (ET)" value="America/New_York" />
+      </Picker>
+
 
     <Link href="/(tabs)/two" asChild>
       <Button
@@ -64,5 +88,11 @@ const styles = StyleSheet.create({
   buttonContent: {
     paddingVertical: 8,
     paddingHorizontal: 20,
+  },
+  picker: {
+    width: '80%',
+    height: 50,
+    backgroundColor: '#fff',
+    marginVertical: 10,
   },
 });
